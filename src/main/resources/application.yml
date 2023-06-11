@@ -1,0 +1,41 @@
+bot:
+  path: ''
+  callback: https://9e3b-176-52-108-255.ngrok-free.app
+  creator:
+  enabled: true
+  token:
+  name: certinformationbot
+server:
+  port: 8089
+  logging:
+    stacktrace:
+      enabled: true
+      deep: 5
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5434}/${DB_DATABASE}?ApplicationName=cert-projects&sslmode=${DB_SSL_MODE:disable}&prepareThreshold=0
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: redis
+forum:
+  accounts: >
+    login1:password1,
+    login2:password2
+  permit:
+    all:
+      by: login:password
+feign:
+  circuitbreaker:
+    enabled: true
